@@ -1,16 +1,112 @@
-# React + Vite
+# 🔗 URL Shortener
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, fast, and beautifully designed **URL Shortener Web App** built with **React** and powered by **Supabase** for backend services.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Overview
 
-## React Compiler
+This project is a fully functional URL shortener that allows users to:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🔐 Authenticate securely  
+- 🔗 Shorten long URLs  
+- 📊 Manage and track links  
+- 🎯 Use a clean and intuitive dashboard  
 
-## Expanding the ESLint configuration
+Instead of building a custom backend, this app leverages **Supabase** for authentication, database, and API handling — making it scalable and production-ready.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Tech Stack
+
+### Frontend
+- ⚛️ React
+- 🎨 Tailwind CSS / Modern UI Components
+- 🔄 React Hooks & Context API
+
+### Backend (BaaS)
+- 🟢 Supabase
+  - Authentication
+  - Database
+  - API
+
+---
+
+## 🎯 Features
+
+### 🔐 Authentication
+- Secure login/signup using Supabase Auth
+- Session handling
+- Protected routes
+
+### 📊 Dashboard
+- Clean and modern UI
+- Overview of all shortened links
+- Smooth user experience
+
+### 🔗 Link Management
+- Create short URLs
+- Store and manage links
+- Easy access and organization
+
+### 💬 Chat-style UI
+- Interactive and engaging interface
+- Smooth transitions and UX
+- User-friendly layout
+
+---
+
+## 🖼️ UI Highlights
+
+- Minimal and modern design  
+- Fully responsive  
+- Smooth animations  
+- Professional dashboard layout  
+
+---
+
+## 📂 Project Structure
+
+
+```
+src/
+│
+├── components/ # Reusable UI components
+├── pages/ # Main pages (Dashboard, Auth, etc.)
+├── hooks/ # Custom hooks (API handling, auth)
+├── context/ # Global state management
+├── services/ # Supabase integration
+└── utils/ # Helper functions
+
+```
+
+
+---
+
+## ⚙️ How It Works
+
+1. User signs up / logs in using Supabase Auth  
+2. User enters a long URL  
+3. The app generates and stores a short URL  
+4. All links are displayed in the dashboard  
+5. User can manage and reuse links anytime  
+
+---
+
+## 🛠️ Setup & Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/url-shortener.git
+
+# Navigate to project folder
+cd url-shortener
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_key

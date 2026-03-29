@@ -1,10 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+import { Toaster } from "./components/ui/sonner";
+import { AuthProvider } from "./context/AuthContext";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+createRoot(document.getElementById("root")).render(
+  <AuthProvider>
     <App />
-  </StrictMode>,
-)
+    <Toaster position="top-right" richColors />
+  </AuthProvider>,
+);
