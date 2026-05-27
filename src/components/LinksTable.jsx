@@ -1,7 +1,7 @@
 import React from "react";
 import LinkRow from "./LinkRow";
 
-const LinksTable = ({ links, clickMap }) => {
+const LinksTable = ({ links, clickMap, refetch }) => {
   return (
     <div className="hidden md:block rounded-2xl border overflow-hidden bg-card">
       <table className="w-full text-sm">
@@ -23,6 +23,7 @@ const LinksTable = ({ links, clickMap }) => {
               key={link.id}
               link={link}
               clicks={clickMap[link.id] || 0}
+              refetch={refetch}
             />
           ))}
         </tbody>

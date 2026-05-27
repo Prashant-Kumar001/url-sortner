@@ -27,7 +27,7 @@ export default function App() {
           ),
         },
         {
-          path: "/redirect/:id",
+          path: "/:id",
           element: <Redirect />,
         },
         {          path: "/links",

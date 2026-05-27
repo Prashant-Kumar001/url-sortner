@@ -48,8 +48,11 @@ const Link = () => {
           </p>
           <p className="text-sm text-gray-500">
             Short:{" "}
-            <a href={link.short_url} className="text-green-500 underline">
-              {link.short_url}
+            <a
+              href={`https://domain.com/${link.custom_url ? link.custom_url : link.short_url}`}
+              className="text-green-500 underline"
+            >
+              {`https://domain.com/${link.custom_url ? link.custom_url : link.short_url}`}
             </a>
           </p>
           <p className="text-sm text-gray-400">

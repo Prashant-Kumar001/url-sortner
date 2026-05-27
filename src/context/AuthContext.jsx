@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   const isAuthenticated = data?.session?.user?.role === "authenticated";
 
+
   useEffect(() => {
     execute();
     // eslint-disable-next-line react-hooks/exhaustive-deps

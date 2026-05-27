@@ -29,14 +29,22 @@ const ClicksChart = ({ clicks }) => {
     }));
   }, [clicks]);
 
+  if(!data.length) return <div className="p-4 border rounded-2xl bg-card">No clicks</div>;
+
 
   return (
     <div className="p-4 border rounded-2xl bg-card">
       <h2 className="text-lg font-semibold mb-4">Clicks by City</h2>
 
-      <div className="h-75">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data}>
+          <BarChart
+            data={data}
+            style={{
+              width: "100%",
+              
+              aspectRatio: 1.618,
+            }}
+            responsive
+          >
             <YAxis tick={{ fontSize: 12 }} />
             <XAxis dataKey="city" tick={{ fontSize: 12 }} />
             <Tooltip
@@ -47,8 +55,6 @@ const ClicksChart = ({ clicks }) => {
             />
             <Bar dataKey="clicks" fill="#8884d8" />
           </BarChart>
-        </ResponsiveContainer>
-      </div>
     </div>
   );
 };

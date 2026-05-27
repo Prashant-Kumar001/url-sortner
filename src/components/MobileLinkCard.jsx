@@ -3,11 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Copy, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import { deleteUrl } from "@/api/urlsApi";
 
-const MobileLinkCard = ({ link, clicks }) => {
+const MobileLinkCard = ({ link, clicks, fetchLinks }) => {
   const handleCopy = async () => {
     await navigator.clipboard.writeText(link.short_url);
     toast.success("Copied!");
+  };
+
+  const handleDelete = async () => {
+   console.log(link.id);
   };
 
   return (
@@ -33,7 +38,7 @@ const MobileLinkCard = ({ link, clicks }) => {
       <div className="flex justify-between text-xs">
         <span>{new Date(link.created_at).toLocaleDateString()}</span>
 
-        <Button size="icon" variant="ghost">
+        <Button onClick={handleDelete} size="icon" variant="ghost">
           <Trash2 size={16} className="text-red-500" />
         </Button>
       </div>

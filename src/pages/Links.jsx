@@ -11,8 +11,8 @@ import DeviceChart from "@/components/DeviceChart";
 import { useLinks } from "@/hooks/useLinks";
 
 const LinksPage = () => {
-  const { clicks, links, clickMap, totalClicks, loading, error } = useLinks();
-
+  const { clicks, links, clickMap, totalClicks, loading, error, refetch } =
+    useLinks();
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
 
@@ -55,7 +55,7 @@ const LinksPage = () => {
 
       <StatsCards links={links} totalClicks={totalClicks} />
 
-      <LinksTable links={filteredLinks} clickMap={clickMap} />
+      <LinksTable links={filteredLinks} clickMap={clickMap} refetch={refetch} />
 
       <div className="grid md:grid-cols-2 gap-4 items-stretch">
         <ClicksChart clicks={clicks} />
@@ -68,6 +68,7 @@ const LinksPage = () => {
             key={link.id}
             link={link}
             clicks={clickMap[link.id] || 0}
+            fetchLinks={refetch}
           />
         ))}
       </div>

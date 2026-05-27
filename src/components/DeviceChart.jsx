@@ -30,13 +30,20 @@ const DeviceChart = ({ clicks }) => {
     }));
   }, [clicks]);
 
+  if(!data.length) return <div className="p-4 border rounded-2xl bg-card">No clicks</div>;
+
   return (
     <div className="p-4 border rounded-2xl bg-card">
       <h2 className="text-lg font-semibold mb-4">Clicks by Device</h2>
 
-      <div className="h-75">
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
+          <PieChart
+            style={{
+              width: "100%",
+              maxHeight: "80vh",
+              aspectRatio: 1,
+            }}
+            responsive
+          >
             <Pie
               data={data}
               dataKey="value"
@@ -45,7 +52,6 @@ const DeviceChart = ({ clicks }) => {
               outerRadius={100}
               paddingAngle={4}
               label
-              
             >
               {data.map((entry, index) => (
                 <Cell key={index} fill={COLORS[index % COLORS.length]} />
@@ -55,8 +61,6 @@ const DeviceChart = ({ clicks }) => {
             <Tooltip />
             <Legend />
           </PieChart>
-        </ResponsiveContainer>
-      </div>
     </div>
   );
 };

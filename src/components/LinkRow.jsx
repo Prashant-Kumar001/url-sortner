@@ -1,25 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Copy, Trash2, ExternalLink } from "lucide-react";
+import { Copy, Trash2, ExternalLink, CopyIcon, Download } from "lucide-react";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
+import { BeatLoader, DotLoader } from "react-spinners";
+import { deleteUrl } from "@/api/urlsApi";
 
-const LinkRow = ({ link, clicks }) => {
+const LinkRow = ({ link, clicks, refetch }) => {
+  const [loading, setLoading] = useState(false);
   const handleCopy = async () => {
     await navigator.clipboard.writeText(link.short_url);
     toast.success("Copied!");
   };
 
+  const handleDelete = async () => {
+    try {
+      setLoading(true);
+      const res = await deleteUrl(link.id);
+      if (!res) return;
+    } catch (error) {
+      toast.error(error.message);
+      console.log(error);
+    } finally {
+      setLoading(false);
+      await refetch();
+    }
+  };
+
+  // const handleDownload = async () => {
+
+  // };
+
   return (
-    <tr className="border-t hover:bg-muted/50">
+    <tr className={`border-t hover:bg-muted/50`}>
       <td className="p-4">
         <Link to={`/links/${link.id}`}>{link.title}</Link>
       </td>
 
-      <td className="p-4 text-indigo-600 flex items-center gap-1">
-        {link.short_url}
-        <a href={link.short_url} target="_blank">
+      <td className="p-4 text-indigo-500 flex items-center gap-1 hover:text-blue-600">
+        {link.custom_url ? link.custom_url : link.short_url}
+        <a
+          href={`http://localhost:5173/${link.custom_url ? link.custom_url : link.short_url}`}
+          target="_blank"
+        >
           <ExternalLink size={14} />
         </a>
       </td>
@@ -43,9 +67,26 @@ const LinkRow = ({ link, clicks }) => {
           <Copy size={16} />
         </Button>
 
-        <Button size="icon" variant="ghost">
-          <Trash2 size={16} className="text-red-500" />
+        <Button
+          onClick={handleDelete}
+          size="icon"
+          variant="ghost"
+          disabled={loading}
+        >
+          {loading ? (
+            <DotLoader size={16} />
+          ) : (
+            <Trash2 size={16} className="text-red-500" />
+          )}
         </Button>
+        {/* <Button
+            onClick={handleDownload}
+            size="icon"
+            variant="ghost"
+            disabled={loading}
+          >
+           <Download size={16} />
+          </Button> */}
       </td>
     </tr>
   );
